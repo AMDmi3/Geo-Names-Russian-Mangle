@@ -67,12 +67,9 @@ sub new {
 sub mangle {
 	my ($this, $name) = @_;
 
-	my @parts;
-	while ($name =~ /(\s+|[.,]+|[^\s.,]+)/g) {
-		push @parts, $1;
-	}
+	my @parts = ($name =~ /(\s+|[.,]+|[^\s.,]+)/g);
 
-	# Найти статусную часть
+	# Найти статусную часть с наибольшим приоритетом
 	my ($pos, $status);
 	for (my $i = 0; $i <= $#parts; $i++) {
 		my $part = lc($parts[$i]);
